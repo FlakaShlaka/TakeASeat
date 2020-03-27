@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - background
+  - furniture
+  - passengers
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 2373325095
+    locked: 0
+  - name: furniture
+    uniqueID: 2087073133
+    locked: 0
+  - name: passengers
+    uniqueID: 123805553
     locked: 0
