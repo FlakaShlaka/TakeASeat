@@ -24,6 +24,7 @@ public void InitializeSprite()
             spriteRendered.sprite = newSprite;
         }
         //PassengersList.Add(this.gameObject);
+
     }
 
     void Update()
