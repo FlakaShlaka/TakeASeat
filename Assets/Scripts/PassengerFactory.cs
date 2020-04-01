@@ -5,11 +5,9 @@ using UnityEngine;
 public class PassengerFactory : MonoBehaviour
 {
     public List<Sprite> spriteList = new List<Sprite>();
-    private bool IsSelected;
 
     private void Start()
     {
-        IsSelected = true;
         InitializeSprite();
     }
 
@@ -23,11 +21,11 @@ public void InitializeSprite()
             SpriteRenderer spriteRendered = gameObject.GetComponent<SpriteRenderer>();
             spriteRendered.sprite = newSprite;
         }
-        //PassengersList.Add(this.gameObject);
 
     }
 
     void Update()
     {
+
     }
 }

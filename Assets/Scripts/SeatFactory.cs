@@ -32,7 +32,6 @@ public class SeatFactory : MonoBehaviour
                 break;
         }
         Sprite newSprite = spriteList[spriteIndex];
-        Debug.Log(spriteIndex);
 
         SpriteRenderer spriteRendered = gameObject.GetComponent<SpriteRenderer>();
         spriteRendered.sprite = newSprite;

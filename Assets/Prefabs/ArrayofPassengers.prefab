@@ -48,3 +48,4 @@ MonoBehaviour:
   startingPoint: {fileID: 5897526137281453603, guid: 71d017214224bf649ac645315fb97c24,
     type: 3}
   numberOfPassengers: 7
+  passArray: []
