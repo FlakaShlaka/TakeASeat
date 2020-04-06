@@ -17,6 +17,7 @@ public class PassArray : MonoBehaviour
     private GameObject currPass;
 
     private bool hasStarted = false;
+    private bool hasFinished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +39,7 @@ public class PassArray : MonoBehaviour
             hasStarted = true;
             yield return new WaitForSeconds(spawnDelay);
         }
-
+        hasFinished = true;
     }
 
 
@@ -48,6 +49,11 @@ public class PassArray : MonoBehaviour
         {
             ChangeControl();
         }
+        if (hasFinished)
+        {
+            currPass.GetComponent<MoveController>().lastOne = true;
+        }
+
     }
 
     void ChangeControl()
@@ -60,6 +66,7 @@ public class PassArray : MonoBehaviour
             passList.RemoveAt(0);
             currPass = passList[0];
             spawnDelay = 0;
+
         }
     }
 }
