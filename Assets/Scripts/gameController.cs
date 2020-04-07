@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class gameController : MonoBehaviour
@@ -31,6 +32,16 @@ public class gameController : MonoBehaviour
 
     void Start()
     {
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
+    }
+
+    public void restartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void Update()

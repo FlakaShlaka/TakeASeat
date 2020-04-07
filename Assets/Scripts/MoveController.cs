@@ -7,7 +7,7 @@ public class MoveController : MonoBehaviour
     [Header("Passenger's Attributes")]
 
     public float speed = 5f;
-    public float seatStep = 10f;
+    public float sprint = 15f;
 
     [Header("Passenger's State")]
     // These should stay public -> being used from another script (PassArray)
@@ -58,7 +58,7 @@ public class MoveController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.D))
                 {
-                    transform.Translate(Vector2.right * speed * 10f * Time.deltaTime);
+                    transform.Translate(Vector2.right * speed * sprint * Time.deltaTime);
                 }
 
                 //If the player leaves the screen
