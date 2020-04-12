@@ -8,6 +8,7 @@ public class MoveController : MonoBehaviour
 
     public float speed = 5f;
     public float sprint = 15f;
+    public Transform MovePoint;
 
     [Header("Passenger's State")]
     // These should stay public -> being used from another script (PassArray)
@@ -15,6 +16,7 @@ public class MoveController : MonoBehaviour
     public GameObject Hora;
     public bool isSeated = false;
 
+    //definition of state machine
     private enum State { moving, seating, seated };
     private State state;
 
@@ -24,9 +26,17 @@ public class MoveController : MonoBehaviour
 
     public bool lastOne = false;
 
+    private GameObject _seatTaken;
+
+    bool isThisTaken = false;
+
+    Transform initialPos;
+
+
+    Transform newPlace;
+
     void Start()
     {
-
         GameObject controller = GameObject.Find("Controller");
         controller.GetComponent<gameController>().HasStarted = true;
         Rows.Insert(0, controller.GetComponent<gameController>().Row1);
@@ -37,16 +47,26 @@ public class MoveController : MonoBehaviour
 
         state = State.moving;
         bool _hasFinished = controller.GetComponent<gameController>().HasFinished;
+
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        
     }
 
     void Update()
     {
-
         switch (state)
         {
             //this is the first stage in which the passengers only moving right *constantly*
             case State.moving:
-                transform.Translate(Vector2.right * Time.deltaTime * speed);
+
+                //sprite allways moves to the right
+                
+                transform.position = Vector3.MoveTowards(transform.position,MovePoint.position, speed * Time.deltaTime );
+
+                //turn "hora" for control indicator on \ off
                 if (isControlled)
                 {
                     Hora.gameObject.SetActive(true);
@@ -56,11 +76,12 @@ public class MoveController : MonoBehaviour
                     Hora.gameObject.SetActive(false);
                 }
 
-                if (Input.GetKeyDown(KeyCode.D))
+                //make the controlled player sprint
+                if (Input.GetKeyDown(KeyCode.D) && isControlled == true)
                 {
-                    transform.Translate(Vector2.right * speed * sprint * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, MovePoint.position, speed * sprint * Time.deltaTime);
                 }
-
+                
                 //If the player leaves the screen
                 if (transform.position.x > 7.4f)
                 {
@@ -70,17 +91,17 @@ public class MoveController : MonoBehaviour
 
                 if (isControlled == true /*&& (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))*/)
                 {
-                    if (Input.GetKeyDown(KeyCode.W))
+                    if ((Input.GetKeyDown(KeyCode.W)))
                     {
-                        TakeASeat("w");
                         state = State.seating;
+                        TakeASeat("w");
                     }
                     else if (Input.GetKeyDown(KeyCode.S))
                     {
-                        TakeASeat("s");
                         state = State.seating;
-                    }
+                        TakeASeat("s");
 
+                    }
                 }
 
                 break;
@@ -90,15 +111,24 @@ public class MoveController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-                    TakeASeat("w");
+                    TakeASeat("w");                    
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
                     TakeASeat("s");
                 }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    if (_selectedRow == 2)
+                    {
+                        transform.Translate(Vector2.right * speed * sprint * Time.deltaTime);
+                    }
+                }
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Hora.gameObject.SetActive(false);
+                    //_seatTaken.gameObject.GetComponent<SeatLogic>().seated = true;
+                    isControlled = false;
                     isSeated = true;                    
                     state = State.seated;
                 }
@@ -123,7 +153,7 @@ public class MoveController : MonoBehaviour
 
     private void TakeASeat(string keyDown)
     {
-
+        initialPos = this.gameObject.GetComponent<Transform>();
         if (keyDown == "w")
         {
             if (_selectedRow == 0)
@@ -131,7 +161,7 @@ public class MoveController : MonoBehaviour
                 return;
                 //Top row
             }
-            else
+            else 
             {
                 transform.position = new Vector2(transform.position.x, Rows[_selectedRow - 1].position.y);
                 _selectedRow--;
