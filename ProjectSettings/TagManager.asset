@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Seat
   - Passenger
+  - Column
   layers:
   - Default
   - TransparentFX

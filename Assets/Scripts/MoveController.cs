@@ -23,8 +23,14 @@ public class MoveController : MonoBehaviour
     [Header("Seats Attributes")]
     private List<Transform> Rows = new List<Transform>(5);
     private int _selectedRow = 2;
+    private int _selectedColumn = 0;
+    private float xToSnap = 0;
 
     public bool lastOne = false;
+
+    private bool _blockMoveUp = false;
+    private bool _blockMoveDown = false;
+    public Collider2D m_ObjectCollider;
 
     private GameObject _seatTaken;
 
@@ -50,10 +56,57 @@ public class MoveController : MonoBehaviour
 
     }
 
+    //This is checking the trigger collision, if the object that we are colliding with has the tag "Passenger" AND he is seated (by checking IsSeated) - it blocks the player's movement
     void OnTriggerEnter2D(Collider2D coll)
     {
-        
+        if (coll.gameObject.CompareTag("Passenger"))
+        {
+            if(coll.GetComponent<MoveController>()._selectedRow <2)
+            {
+                _blockMoveUp = true;
+                Debug.Log("Blocked up");
+            }
+        }
+
+        if (coll.gameObject.CompareTag("Passenger"))
+        {
+            if (coll.GetComponent<MoveController>()._selectedRow > 2)
+            {
+                _blockMoveDown = true;
+                Debug.Log("Blocked down");
+            }
+        }
+
+        if(coll.gameObject.CompareTag("Column"))
+        {
+            _selectedColumn++;
+            xToSnap = coll.gameObject.GetComponentInParent<Transform>().transform.position.x;
+        }
+
     }
+
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Passenger"))
+        {
+            if (coll.GetComponent<MoveController>()._selectedRow < 2)
+            {
+                _blockMoveUp = false;
+                Debug.Log("Free move up");
+            }
+        }
+
+        if (coll.gameObject.CompareTag("Passenger"))
+        {
+            if (coll.GetComponent<MoveController>()._selectedRow > 2)
+            {
+                _blockMoveDown = false;
+                Debug.Log("Free move down");
+            }
+        }
+
+    }
+
 
     void Update()
     {
@@ -91,7 +144,7 @@ public class MoveController : MonoBehaviour
 
                 if (isControlled == true /*&& (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))*/)
                 {
-                    if ((Input.GetKeyDown(KeyCode.W)))
+                    if (Input.GetKeyDown(KeyCode.W))
                     {
                         state = State.seating;
                         TakeASeat("w");
@@ -129,7 +182,8 @@ public class MoveController : MonoBehaviour
                     Hora.gameObject.SetActive(false);
                     //_seatTaken.gameObject.GetComponent<SeatLogic>().seated = true;
                     isControlled = false;
-                    isSeated = true;                    
+                    isSeated = true;
+                    m_ObjectCollider.isTrigger = true;
                     state = State.seated;
                 }
 
@@ -154,6 +208,7 @@ public class MoveController : MonoBehaviour
     private void TakeASeat(string keyDown)
     {
         initialPos = this.gameObject.GetComponent<Transform>();
+        
         if (keyDown == "w")
         {
             if (_selectedRow == 0)
@@ -161,9 +216,9 @@ public class MoveController : MonoBehaviour
                 return;
                 //Top row
             }
-            else 
+            else if (!_blockMoveUp)
             {
-                transform.position = new Vector2(transform.position.x, Rows[_selectedRow - 1].position.y);
+                transform.position = new Vector2(xToSnap, Rows[_selectedRow - 1].position.y);
                 _selectedRow--;
             }
         }
@@ -174,9 +229,9 @@ public class MoveController : MonoBehaviour
                 return;
                 //Bottom row
             }
-            else
+            else if(!_blockMoveDown)
             {
-                transform.position = new Vector2(transform.position.x, Rows[_selectedRow + 1].position.y);
+                transform.position = new Vector2(xToSnap, Rows[_selectedRow + 1].position.y);
                 _selectedRow++;
             }
         }
