@@ -30,7 +30,7 @@ public class MoveController : MonoBehaviour
 
     private bool _blockMoveUp = false;
     private bool _blockMoveDown = false;
-    public Collider2D m_ObjectCollider;
+    public GameObject m_ObjectCollider;
 
     private GameObject _seatTaken;
 
@@ -61,30 +61,44 @@ public class MoveController : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("Passenger"))
         {
-            if(coll.GetComponent<MoveController>()._selectedRow <2)
+            if(coll.GetComponent<MoveController>()._selectedRow < 2)
             {
-                _blockMoveUp = true;
-                Debug.Log("Blocked up");
+                this._blockMoveUp = true;
+            }
+            else if (coll.GetComponent<MoveController>()._selectedRow > 2)
+            {
+                this._blockMoveDown = true;
+                //Debug.Log("Blocked down");
             }
         }
 
         if (coll.gameObject.CompareTag("Passenger"))
         {
-            if (coll.GetComponent<MoveController>()._selectedRow > 2)
-            {
-                _blockMoveDown = true;
-                Debug.Log("Blocked down");
-            }
+            
         }
 
-        if(coll.gameObject.CompareTag("Column"))
+        if(coll.gameObject.CompareTag("Seat"))
         {
-            _selectedColumn++;
             xToSnap = coll.gameObject.GetComponentInParent<Transform>().transform.position.x;
+            _selectedColumn++;
         }
 
     }
-
+    private void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("Passenger"))
+        {
+            if (coll.GetComponent<MoveController>()._selectedRow < 2)
+            {
+                this._blockMoveUp = true;
+            }
+            else if (coll.GetComponent<MoveController>()._selectedRow > 2)
+            {
+                this._blockMoveDown = true;
+                //Debug.Log("Blocked down");
+            }
+        }
+    }
     private void OnTriggerExit2D(Collider2D coll)
     {
         if (coll.gameObject.CompareTag("Passenger"))
@@ -94,22 +108,27 @@ public class MoveController : MonoBehaviour
                 _blockMoveUp = false;
                 Debug.Log("Free move up");
             }
-        }
-
-        if (coll.gameObject.CompareTag("Passenger"))
-        {
-            if (coll.GetComponent<MoveController>()._selectedRow > 2)
+            else if (coll.GetComponent<MoveController>()._selectedRow > 2)
             {
                 _blockMoveDown = false;
                 Debug.Log("Free move down");
             }
+            if (coll.gameObject.CompareTag("Column"))
+            {
+                _blockMoveUp = false;
+                _blockMoveDown = false;
+
+            }
+
         }
+
 
     }
 
 
     void Update()
     {
+        Debug.Log(this.gameObject.name+""+_blockMoveUp);
         switch (state)
         {
             //this is the first stage in which the passengers only moving right *constantly*
@@ -179,12 +198,16 @@ public class MoveController : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Hora.gameObject.SetActive(false);
-                    //_seatTaken.gameObject.GetComponent<SeatLogic>().seated = true;
-                    isControlled = false;
-                    isSeated = true;
-                    m_ObjectCollider.isTrigger = true;
-                    state = State.seated;
+                    if (_selectedRow != 2)
+                    {
+                        Hora.gameObject.SetActive(false);
+                        //_seatTaken.gameObject.GetComponent<SeatLogic>().seated = true;
+                        isControlled = false;
+                        isSeated = true;
+                        m_ObjectCollider.GetComponent<BoxCollider2D>().isTrigger = true;
+                        this.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                        state = State.seated;
+                    }
                 }
 
                 break;
@@ -215,8 +238,8 @@ public class MoveController : MonoBehaviour
             {
                 return;
                 //Top row
-            }
-            else if (!_blockMoveUp)
+            }            
+            else if (this._blockMoveUp == false)
             {
                 transform.position = new Vector2(xToSnap, Rows[_selectedRow - 1].position.y);
                 _selectedRow--;
@@ -229,7 +252,7 @@ public class MoveController : MonoBehaviour
                 return;
                 //Bottom row
             }
-            else if(!_blockMoveDown)
+            else if(!this._blockMoveDown)
             {
                 transform.position = new Vector2(xToSnap, Rows[_selectedRow + 1].position.y);
                 _selectedRow++;
