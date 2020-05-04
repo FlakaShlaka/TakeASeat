@@ -128,7 +128,7 @@ public class MoveController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(this.gameObject.name+""+_blockMoveUp);
+        //Debug.Log(this.gameObject.name+""+_blockMoveUp);
         switch (state)
         {
             //this is the first stage in which the passengers only moving right *constantly*
@@ -158,7 +158,9 @@ public class MoveController : MonoBehaviour
                 if (transform.position.x > 7.4f)
                 {
                     isSeated = true;
-                    state = State.seated;                    
+                    state = State.seated;
+                    isControlled = false;
+                    Invoke("Destroy", 1f);
                 }
 
                 if (isControlled == true /*&& (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))*/)
@@ -258,5 +260,9 @@ public class MoveController : MonoBehaviour
                 _selectedRow++;
             }
         }
+    }
+    private void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

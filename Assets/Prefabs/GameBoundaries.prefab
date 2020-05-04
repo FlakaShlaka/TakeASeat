@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2990976582446759338}
   - component: {fileID: 2990976582446759339}
+  - component: {fileID: 9131765813692213882}
   m_Layer: 0
   m_Name: GameBoundariesRight
   m_TagString: Untagged
@@ -90,6 +91,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &9131765813692213882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2990976582446759336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8939ccad6521c4e93e1e94c352e9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2990976582630583165
 GameObject:
   m_ObjectHideFlags: 0
