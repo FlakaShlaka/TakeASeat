@@ -72,12 +72,15 @@ public class MoveController : MonoBehaviour
             }
         }
 
-        if (coll.gameObject.CompareTag("Passenger"))
+        if (coll.gameObject.CompareTag("Death"))
         {
-            
+            isSeated = true;
+            state = State.seated;
+            isControlled = false;
+            Invoke("Destroy", 1f);
         }
 
-        if(coll.gameObject.CompareTag("Seat"))
+        if (coll.gameObject.CompareTag("Seat"))
         {
             xToSnap = coll.gameObject.GetComponentInParent<Transform>().transform.position.x;
             _selectedColumn++;
@@ -153,15 +156,12 @@ public class MoveController : MonoBehaviour
                 {
                     transform.position = Vector3.MoveTowards(transform.position, MovePoint.position, speed * sprint * Time.deltaTime);
                 }
-                
+
                 //If the player leaves the screen
-                if (transform.position.x > 7.4f)
-                {
-                    isSeated = true;
-                    state = State.seated;
-                    isControlled = false;
-                    Invoke("Destroy", 1f);
-                }
+                //if (transform.position.x > 7.4f)
+                //{
+                //This was moved to the collider of Death - Ori
+                //}
 
                 if (isControlled == true /*&& (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))*/)
                 {
@@ -263,6 +263,6 @@ public class MoveController : MonoBehaviour
     }
     private void Destroy()
     {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }

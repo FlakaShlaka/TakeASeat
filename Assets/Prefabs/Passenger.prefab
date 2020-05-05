@@ -154,7 +154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 123805553
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.9716981, g: 0.68293875, b: 0.68293875, a: 1}
@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 7983983510180726408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.01, y: -0.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8298198865983383013}
   - {fileID: 6015097928888351417}
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 123805553
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: aef104694d3a37b4f83826eb2f161608, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -267,13 +267,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteList:
-  - {fileID: 21300000, guid: 6c49a4282bccdfa489680deaf3438348, type: 3}
-  - {fileID: 21300000, guid: cb544e06d89a60e439f78f831b21e438, type: 3}
-  - {fileID: 21300000, guid: aef104694d3a37b4f83826eb2f161608, type: 3}
-  - {fileID: 21300000, guid: 43a5a936e3effe74a84c320a1c0626b2, type: 3}
-  - {fileID: 21300000, guid: 407c35bd1e0e8a241b72ce549ddea80e, type: 3}
-  - {fileID: 21300000, guid: 52c28e36105352741897239546a900c8, type: 3}
-  - {fileID: 21300000, guid: 73531e2149ed6d44498d7373e5ffe177, type: 3}
+  - {fileID: 21300000, guid: 0254e8b46ba23414a93e6926ee0430c0, type: 3}
+  - {fileID: 21300000, guid: dff8eaaef2907294eaa2eb1d0b8592fd, type: 3}
+  - {fileID: 21300000, guid: 47ad4c4749216c344a62c44aeb668ad1, type: 3}
+  - {fileID: 21300000, guid: c8b413b5476a82141b012ce55325c917, type: 3}
+  - {fileID: 21300000, guid: 48cebb49463e0fa4fad4732eacaa0123, type: 3}
+  - {fileID: 21300000, guid: 0b6e5f2f195a6d8458368434172115e9, type: 3}
+  - {fileID: 21300000, guid: 6d494d515c0f74e49853f2e6cab30126, type: 3}
+  - {fileID: 21300000, guid: f195a59110344cc4bbb57f0fdf51d109, type: 3}
+  - {fileID: 21300000, guid: c3daf36523b79224c8478c6c31da6f1f, type: 3}
+  - {fileID: 21300000, guid: ff30c6f04a88e614babbe8564652f6d3, type: 3}
 --- !u!114 &7663312994949196977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a31a9584e33ac4181879c0c957583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 10
   sprint: 15
   MovePoint: {fileID: 6015097928888351417}
   isControlled: 0

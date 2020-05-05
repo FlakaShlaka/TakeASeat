@@ -7,6 +7,7 @@ TagManager:
   - Seat
   - Passenger
   - Column
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: background
     uniqueID: 2373325095
+    locked: 0
+  - name: BackgroundStuff
+    uniqueID: 547543935
     locked: 0
   - name: furniture
     uniqueID: 2087073133
