@@ -14,6 +14,8 @@ public class MoveController : MonoBehaviour
     // These should stay public -> being used from another script (PassArray)
     public bool isControlled = false;
     public GameObject Hora;
+    public GameObject HoraRegular;
+
     public bool isSeated = false;
 
     //definition of state machine
@@ -53,6 +55,7 @@ public class MoveController : MonoBehaviour
 
         state = State.moving;
         bool _hasFinished = controller.GetComponent<gameController>().HasFinished;
+
 
     }
 
@@ -145,10 +148,12 @@ public class MoveController : MonoBehaviour
                 if (isControlled)
                 {
                     Hora.gameObject.SetActive(true);
+                    HoraRegular.gameObject.SetActive(false);
                 }
                 else if (!isControlled)
                 {
                     Hora.gameObject.SetActive(false);
+                    HoraRegular.gameObject.SetActive(true);
                 }
 
                 //make the controlled player sprint
@@ -203,6 +208,7 @@ public class MoveController : MonoBehaviour
                     if (_selectedRow != 2)
                     {
                         Hora.gameObject.SetActive(false);
+                        HoraRegular.gameObject.SetActive(false);
                         //_seatTaken.gameObject.GetComponent<SeatLogic>().seated = true;
                         isControlled = false;
                         isSeated = true;

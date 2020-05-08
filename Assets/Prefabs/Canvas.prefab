@@ -48,9 +48,9 @@ Canvas:
   m_GameObject: {fileID: 5712378002318937026}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 0
+  m_Camera: {fileID: 908515349194523702, guid: 461a05b64d95c994e90b0b94c5dfb7f8, type: 3}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -133,7 +133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 34, y: 426.65}
+  m_AnchoredPosition: {x: 34, y: 426.65002}
   m_SizeDelta: {x: -1679.4, y: -941.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5712378002882006795
