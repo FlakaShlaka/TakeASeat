@@ -16,7 +16,7 @@ public void InitializeSprite()
     {
         for (int i = 0; i < spriteList.Count; i++)
         {
-            int spriteIndex = Random.Range(0, spriteList.Count);
+            int spriteIndex = UnityEngine.Random.Range(0, spriteList.Count);
             Sprite newSprite = spriteList[spriteIndex];
             SpriteRenderer spriteRendered = gameObject.GetComponent<SpriteRenderer>();
             spriteRendered.sprite = newSprite;
