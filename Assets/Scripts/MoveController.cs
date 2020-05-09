@@ -35,9 +35,11 @@ public class MoveController : MonoBehaviour
     public GameObject m_ObjectCollider;
 
     private GameObject _seatTaken;
+    public bool isAngry = false;
 
 
-    
+
+
 
 
     bool isThisTaken = false;
@@ -114,10 +116,15 @@ public class MoveController : MonoBehaviour
                 if (state == State.seated)
                 {
                     
-                    if((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "baby" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta")
-                        || (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "baby"))
+                    if((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "policeman" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta")
+                        || (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "policeman"))
                     {
                         Debug.Log("asd");
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<PassengerFactory>().angry;
+                        coll.gameObject.GetComponent<SpriteRenderer>().sprite = coll.gameObject.GetComponent<PassengerFactory>().angry;
+                        isAngry = true;
+                        coll.gameObject.GetComponent<MoveController>().isAngry = true;
+
                     }
                 }
             }

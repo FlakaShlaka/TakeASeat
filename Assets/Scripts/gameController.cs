@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.SocialPlatforms.Impl;
 
 public class gameController : MonoBehaviour
 {
@@ -67,6 +67,16 @@ public class gameController : MonoBehaviour
         else if (HasFinished)
         {
             winScreen.gameObject.SetActive(true);
+            MoveController[] components = GameObject.FindObjectsOfType<MoveController>();
+            int _score = 0;
+            foreach (var item in components)
+            {
+                if (!item.isAngry && item.isSeated)
+                {
+                    _score++;
+                }
+            }
+            Debug.Log(_score);
         }
 
     }

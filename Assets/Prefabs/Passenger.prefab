@@ -348,8 +348,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteList:
-  - {fileID: 21300000, guid: 0254e8b46ba23414a93e6926ee0430c0, type: 3}
+  - {fileID: 21300000, guid: 6d494d515c0f74e49853f2e6cab30126, type: 3}
   - {fileID: 21300000, guid: dff8eaaef2907294eaa2eb1d0b8592fd, type: 3}
+  AngryspriteList:
+  - {fileID: 21300000, guid: 074967ecebf669b4ebe48ea05c2514e8, type: 3}
+  - {fileID: 21300000, guid: fd08c2d111e0f6f46a041110ebad48a9, type: 3}
 --- !u!114 &7663312994949196977
 MonoBehaviour:
   m_ObjectHideFlags: 0

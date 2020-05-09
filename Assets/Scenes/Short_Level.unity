@@ -3486,7 +3486,7 @@ PrefabInstance:
     - target: {fileID: 2958875102851324096, guid: 9d8dcb9ff0a721b44a3d7c877ecec714,
         type: 3}
       propertyPath: numberOfPassengers
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d8dcb9ff0a721b44a3d7c877ecec714, type: 3}
@@ -7871,7 +7871,7 @@ PrefabInstance:
     - target: {fileID: 6061087814667463715, guid: 421fee2af474cec4cbdda59998a190c9,
         type: 3}
       propertyPath: timeLeft
-      value: 10
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 6061087814667463712, guid: 421fee2af474cec4cbdda59998a190c9,
         type: 3}
