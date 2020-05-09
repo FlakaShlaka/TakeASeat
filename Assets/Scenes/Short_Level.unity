@@ -3486,7 +3486,7 @@ PrefabInstance:
     - target: {fileID: 2958875102851324096, guid: 9d8dcb9ff0a721b44a3d7c877ecec714,
         type: 3}
       propertyPath: numberOfPassengers
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d8dcb9ff0a721b44a3d7c877ecec714, type: 3}
