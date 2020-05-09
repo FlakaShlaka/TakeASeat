@@ -350,14 +350,6 @@ MonoBehaviour:
   spriteList:
   - {fileID: 21300000, guid: 0254e8b46ba23414a93e6926ee0430c0, type: 3}
   - {fileID: 21300000, guid: dff8eaaef2907294eaa2eb1d0b8592fd, type: 3}
-  - {fileID: 21300000, guid: 47ad4c4749216c344a62c44aeb668ad1, type: 3}
-  - {fileID: 21300000, guid: c8b413b5476a82141b012ce55325c917, type: 3}
-  - {fileID: 21300000, guid: 48cebb49463e0fa4fad4732eacaa0123, type: 3}
-  - {fileID: 21300000, guid: 0b6e5f2f195a6d8458368434172115e9, type: 3}
-  - {fileID: 21300000, guid: 6d494d515c0f74e49853f2e6cab30126, type: 3}
-  - {fileID: 21300000, guid: f195a59110344cc4bbb57f0fdf51d109, type: 3}
-  - {fileID: 21300000, guid: c3daf36523b79224c8478c6c31da6f1f, type: 3}
-  - {fileID: 21300000, guid: ff30c6f04a88e614babbe8564652f6d3, type: 3}
 --- !u!114 &7663312994949196977
 MonoBehaviour:
   m_ObjectHideFlags: 0

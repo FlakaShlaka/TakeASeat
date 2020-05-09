@@ -36,6 +36,10 @@ public class MoveController : MonoBehaviour
 
     private GameObject _seatTaken;
 
+
+    
+
+
     bool isThisTaken = false;
 
     Transform initialPos;
@@ -87,6 +91,7 @@ public class MoveController : MonoBehaviour
         {
             xToSnap = coll.gameObject.GetComponentInParent<Transform>().transform.position.x;
             _selectedColumn++;
+            _seatTaken = coll.gameObject.GetComponent<SeatLogic>().passanger_Seating;
         }
 
     }
@@ -103,6 +108,25 @@ public class MoveController : MonoBehaviour
                 this._blockMoveDown = true;
                 //Debug.Log("Blocked down");
             }
+
+            if (coll.GetComponent<MoveController>()._selectedRow == 1 || coll.GetComponent<MoveController>()._selectedRow == 3)
+            {
+                if (state == State.seated)
+                {
+                    
+                    if((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "baby" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta")
+                        || (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "baby"))
+                    {
+                        Debug.Log("asd");
+                    }
+                }
+            }
+        }
+        if (coll.gameObject.CompareTag("Seat"))
+        {
+            xToSnap = coll.gameObject.GetComponentInParent<Transform>().transform.position.x;
+            _selectedColumn++;
+            //_seatTaken = coll.gameObject.GetComponent<SeatLogic>().passanger_Seating;
         }
     }
     private void OnTriggerExit2D(Collider2D coll)
@@ -210,6 +234,7 @@ public class MoveController : MonoBehaviour
                         Hora.gameObject.SetActive(false);
                         HoraRegular.gameObject.SetActive(false);
                         //_seatTaken.gameObject.GetComponent<SeatLogic>().seated = true;
+                        //_seatTaken.gameObject.GetComponent<SeatLogic>().passanger_Seating = this.gameObject;
                         isControlled = false;
                         isSeated = true;
                         m_ObjectCollider.GetComponent<BoxCollider2D>().isTrigger = true;

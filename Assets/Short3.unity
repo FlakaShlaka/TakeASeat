@@ -2915,7 +2915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &981644882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,7 +2994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.6300049, y: -12.5}
+  m_AnchoredPosition: {x: 0.75, y: -12.5}
   m_SizeDelta: {x: -1863.074, y: -1047.259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &985871745
@@ -4591,7 +4591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -858, y: 9}
+  m_AnchoredPosition: {x: -857.9999, y: 9}
   m_SizeDelta: {x: -1907, y: -1068}
   m_Pivot: {x: 0.5, y: 0.5000003}
 --- !u!212 &1518182720
@@ -7338,6 +7338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5712378002318937024, guid: b97ecdb82e3511c408c15d0faceb6943,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b97ecdb82e3511c408c15d0faceb6943, type: 3}

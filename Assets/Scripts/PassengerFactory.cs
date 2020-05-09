@@ -6,6 +6,7 @@ public class PassengerFactory : MonoBehaviour
 {
     public List<Sprite> spriteList = new List<Sprite>();
 
+
     private void Start()
     {
         InitializeSprite();
