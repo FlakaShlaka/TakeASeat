@@ -14,10 +14,11 @@ public class gameController : MonoBehaviour
     public Transform Row4;
     public Transform Aisle;
 
+    public int lastIndex;
+
     [SerializeField] float timeLeft;
     [SerializeField] Text timerText;
     [SerializeField] GameObject endGameScreen;
-    public GameObject winScreen;
 
     [SerializeField] float spawnTime;
     [SerializeField] Text SpwnText;
@@ -32,6 +33,7 @@ public class gameController : MonoBehaviour
 
     void Start()
     {
+        lastIndex = UnityEngine.Random.Range(0, 10);
     }
 
     public void quitGame()
@@ -46,6 +48,7 @@ public class gameController : MonoBehaviour
 
     void Update()
     {
+
         if (!HasFinished)
         {
             if (timeLeft > 0 && clock == false)
@@ -61,12 +64,41 @@ public class gameController : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 endGameScreen.SetActive(true);
+                MoveController[] components = GameObject.FindObjectsOfType<MoveController>();
+                int _score = 0;
+                foreach (var item in components)
+                {
+                    if (!item.isAngry && item.isSeated)
+                    {
+                        _score++;
+                    }
+                }
+                if (_score <= 13)
+                {
+                    GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                    chidlran[0].gameObject.SetActive(true);
+                }
+                if (_score > 13 && _score <= 26)
+                {
+                    GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                    chidlran[1].gameObject.SetActive(true);
+                }
+                if (_score > 26 && _score < 40)
+                {
+                    GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                    chidlran[1].gameObject.SetActive(true);
+                }
+                if (_score == 40)
+                {
+                    GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                    chidlran[2].gameObject.SetActive(true);
+                }
             }
 
         }
         else if (HasFinished)
         {
-            winScreen.gameObject.SetActive(true);
+            endGameScreen.gameObject.SetActive(true);
             MoveController[] components = GameObject.FindObjectsOfType<MoveController>();
             int _score = 0;
             foreach (var item in components)
@@ -76,9 +108,27 @@ public class gameController : MonoBehaviour
                     _score++;
                 }
             }
-            Debug.Log(_score);
+            if (_score <= 13)
+            {
+                GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                chidlran[0].gameObject.SetActive(true);
+            }
+            if (_score > 13 && _score <= 26)
+            {
+                GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                chidlran[1].gameObject.SetActive(true);
+            }
+            if (_score > 26 && _score < 40)
+            {
+                GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                chidlran[1].gameObject.SetActive(true);
+            }
+            if (_score == 40)
+            {
+                GameObject[] chidlran = endGameScreen.gameObject.GetComponent<ScreensContainer>()._screens;
+                chidlran[2].gameObject.SetActive(true);
+            }
         }
-
     }
     IEnumerator WaitforTimer()
     {

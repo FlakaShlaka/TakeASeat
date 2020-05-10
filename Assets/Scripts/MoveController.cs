@@ -119,7 +119,24 @@ public class MoveController : MonoBehaviour
                     if((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "policeman" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta")
                         || (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "policeman"))
                     {
-                        Debug.Log("asd");
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<PassengerFactory>().angry;
+                        coll.gameObject.GetComponent<SpriteRenderer>().sprite = coll.gameObject.GetComponent<PassengerFactory>().angry;
+                        isAngry = true;
+                        coll.gameObject.GetComponent<MoveController>().isAngry = true;
+
+                    }
+                    if ((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "woman" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "rabbi")
+                        || (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "rabbi" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "woman"))
+                    {
+                        this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<PassengerFactory>().angry;
+                        coll.gameObject.GetComponent<SpriteRenderer>().sprite = coll.gameObject.GetComponent<PassengerFactory>().angry;
+                        isAngry = true;
+                        coll.gameObject.GetComponent<MoveController>().isAngry = true;
+
+                    }
+                    if ((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "grandpa" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "baby")
+                        || (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "baby" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "grandpa"))
+                    {
                         this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<PassengerFactory>().angry;
                         coll.gameObject.GetComponent<SpriteRenderer>().sprite = coll.gameObject.GetComponent<PassengerFactory>().angry;
                         isAngry = true;
@@ -154,12 +171,29 @@ public class MoveController : MonoBehaviour
             {
                 _blockMoveUp = false;
                 _blockMoveDown = false;
-
             }
-
         }
-
-
+        if (!this.gameObject.GetComponent<MoveController>().isSeated)
+        {
+            if ((this.gameObject.GetComponent<MoveController>()._selectedRow == 2)&&
+                ((coll.gameObject.GetComponent<MoveController>()._selectedRow != 3) || (coll.gameObject.GetComponent<MoveController>()._selectedRow != 1)) )
+            {
+                Debug.Log(coll.gameObject.GetComponent<SpriteRenderer>().sprite.name);
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<PassengerFactory>().newSprite;
+                isAngry = false;
+            }
+            if ((this.gameObject.GetComponent<MoveController>()._selectedRow == 2) &&
+                ((coll.gameObject.GetComponent<MoveController>()._selectedRow == 3) || (coll.gameObject.GetComponent<MoveController>()._selectedRow == 1)))
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.GetComponent<PassengerFactory>().newSprite;
+                isAngry = false;
+            }
+            if (((coll.gameObject.GetComponent<MoveController>()._selectedRow == 4) || (coll.gameObject.GetComponent<MoveController>()._selectedRow == 0)))
+            {
+                coll.gameObject.GetComponent<SpriteRenderer>().sprite = coll.gameObject.GetComponent<PassengerFactory>().newSprite;
+                coll.gameObject.GetComponent<MoveController>().isAngry = false;
+            }
+        }
     }
 
 
@@ -254,14 +288,15 @@ public class MoveController : MonoBehaviour
             
                 //this is the final state.
             case State.seated:
-
-                if (lastOne)
+ 
+                if (this.lastOne)
                 {
-                    GameObject controller = GameObject.Find("Controller");
-                    controller.GetComponent<gameController>().HasFinished = true;
+                    if(this.isSeated)
+                    {
+                        GameObject controller = GameObject.Find("Controller");
+                        controller.GetComponent<gameController>().HasFinished = true;
+                    }
                 }
-
-
                 break;
 
         }

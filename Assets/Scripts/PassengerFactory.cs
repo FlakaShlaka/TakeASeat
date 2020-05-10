@@ -9,23 +9,39 @@ public class PassengerFactory : MonoBehaviour
     public List<Sprite> AngryspriteList = new List<Sprite>();
 
     public Sprite angry;
+    public Sprite newSprite;
     private void Start()
     {
         InitializeSprite();
+
     }
 
 
 public void InitializeSprite()
     {
-        for (int i = 0; i < spriteList.Count; i++)
-        {
+        GameObject controller = GameObject.Find("Controller");
+        int tempIndex = controller.GetComponent<gameController>().lastIndex;
+        //for (int i = 0; i < spriteList.Count; i++)
+        //{
             int spriteIndex = UnityEngine.Random.Range(0, spriteList.Count);
-            Sprite newSprite = spriteList[spriteIndex];
+            if (spriteIndex >= tempIndex)
+            {
+                newSprite = spriteList[spriteIndex];
+                SpriteRenderer spriteRendered = gameObject.GetComponent<SpriteRenderer>();
+                spriteRendered.sprite = newSprite;
+                angry = AngryspriteList[spriteIndex];
+                controller.GetComponent<gameController>().lastIndex = spriteIndex;
+            }
+            else if (spriteIndex <= tempIndex)
+            {
+            newSprite = spriteList[spriteIndex];
             SpriteRenderer spriteRendered = gameObject.GetComponent<SpriteRenderer>();
             spriteRendered.sprite = newSprite;
-
             angry = AngryspriteList[spriteIndex];
-        }
+            controller.GetComponent<gameController>().lastIndex = spriteIndex;
+            }
+
+        //}
 
     }
 
