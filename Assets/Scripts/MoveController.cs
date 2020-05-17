@@ -110,10 +110,10 @@ public class MoveController : MonoBehaviour
                 this._blockMoveDown = true;
                 //Debug.Log("Blocked down");
             }
-
+            
             if (coll.GetComponent<MoveController>()._selectedRow == 1 || coll.GetComponent<MoveController>()._selectedRow == 3)
             {
-                if (state == State.seated)
+                if (state == State.seated && coll.gameObject.GetComponent<MoveController>().state == State.seated)
                 {
                     
                     if((coll.gameObject.GetComponent<SpriteRenderer>().sprite.name == "policeman" && this.gameObject.GetComponent<SpriteRenderer>().sprite.name == "gangsta")
